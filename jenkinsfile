@@ -13,7 +13,7 @@ pipeline {
                 // Envoyer l'e-mail avec le contenu de README.txt
                 emailext(
                     subject: "Nouveau commit dans le dépôt",
-                    body: readFile('https://github.com/chihebzouaoui/5sleam2/blob/main/README.txt'),
+                    body: README.txt,
                     recipientProviders: [[$class: 'CulpritsRecipientProvider']]
                 )
             }
