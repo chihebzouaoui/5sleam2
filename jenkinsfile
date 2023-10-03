@@ -10,12 +10,10 @@ pipeline {
         }
         stage('Send Email') {
             steps {
-                 // Lire le contenu du fichier README.txt
-                def readmeContent = readFile('README.txt')
                 // Envoyer l'e-mail avec le contenu de README.txt
                 emailext(
                     subject: "Nouveau commit dans le dépôt",
-                    body: readmeContent,
+                    body: "${FILE, path=\"README.txt\"}",
                     recipientProviders: [[$class: 'CulpritsRecipientProvider']]
                 )
             }
