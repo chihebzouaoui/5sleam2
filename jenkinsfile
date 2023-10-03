@@ -13,7 +13,7 @@ pipeline {
                 // Envoyer l'e-mail avec le contenu de README.txt
                 emailext(
                     subject: "Nouveau commit dans le dépôt",
-                    body: path=\"README.txt\",
+                    body: README.txt,
                     recipientProviders: [[$class: 'CulpritsRecipientProvider']]
                 )
             }
