@@ -8,25 +8,15 @@ pipeline {
                 checkout scm
             }
         }
-stage('Send Email') {
-    steps {
-        // Lire le contenu du fichier README.txt
-        def readmeContent = readFile('README.txt')
-        
-        // Envoyer un e-mail avec le contenu de README.txt
-        emailext(
-            subject: "Nouveau commit dans le dépôt",
-            body: readmeContent,
-            recipientProviders: [[$class: 'CulpritsRecipientProvider']]
-        )
+        stage('Send Email') {
+            steps {
+                // Envoyer l'e-mail avec le contenu de README.txt
+                emailext(
+                    subject: "Nouveau commit dans le dépôt",
+                    body: "${FILE, path=\"README.txt\"}",
+                    recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+                )
+            }
+        }
     }
 }
-    }
-}
-
-
-
-
-
-
-
