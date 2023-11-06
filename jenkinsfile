@@ -1,21 +1,19 @@
 pipeline {
     agent any
-    
     stages {
-        stage('Checkout') {
+        stage('Build') {
             steps {
-                // Checkout du dépôt Git
-                checkout scm
+                echo'build'
             }
         }
-        stage('Send Email') {
+        stage('test') {
             steps {
-                // Envoyer l'e-mail avec le contenu de README.txt
-                emailext(
-                    subject: "Nouveau commit dans le dépôt",
-                    body: readFile('/var/lib/jenkins/workspace/5sleam2/README.txt'),
-                    recipientProviders: [[$class: 'CulpritsRecipientProvider']]
-                )
+                echo 'test'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'deploy'
             }
         }
     }
